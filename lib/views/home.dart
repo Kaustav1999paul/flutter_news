@@ -3,6 +3,8 @@ import 'package:flutter_news/helper/data.dart';
 import 'package:flutter_news/helper/news.dart';
 import 'package:flutter_news/models/article_model.dart';
 import 'package:flutter_news/models/category_model.dart';
+import 'package:flutter_news/views/article_view.dart';
+import 'package:flutter_news/views/category_news.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -83,7 +85,9 @@ class _HomeState extends State<Home> {
                             return BlogTile(
                                 imageUrl: articles[index].urlToImage,
                                 title: articles[index].title,
-                                desc: articles[index].description);
+                                desc: articles[index].description,
+                                url: articles[index].url,
+                            );
                           }),
                     )
                   ],
@@ -95,13 +99,17 @@ class _HomeState extends State<Home> {
 }
 
 class CategoryTile extends StatelessWidget {
-  final imageUrl, categoryName;
+  final String imageUrl, categoryName;
   CategoryTile({this.imageUrl, this.categoryName});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Category(
+          category: categoryName.toLowerCase(),
+        )));
+      },
       child: Container(
         margin: EdgeInsets.only(left: 10, bottom: 15, top: 5),
         child: Stack(
@@ -137,27 +145,34 @@ class CategoryTile extends StatelessWidget {
 }
 
 class BlogTile extends StatelessWidget {
-  final String imageUrl, title, desc;
+  final String imageUrl, title, desc, url;
   BlogTile(
-      {@required this.imageUrl, @required this.title, @required this.desc});
+      {@required this.imageUrl, @required this.title, @required this.desc, this.url});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Column(
-          children: <Widget>[
-            Image.network(imageUrl),
-            SizedBox(height: 8.0),
-            Text(
-              title,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(height: 4.0),
-            Text(desc)
-          ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleView(
+          blogUrl: url,
+        )));
+      },
+      child: Container(
+        margin: EdgeInsets.only(top: 10.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Column(
+            children: <Widget>[
+              Image.network(imageUrl),
+              SizedBox(height: 8.0),
+              Text(
+                title,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              ),
+              SizedBox(height: 4.0),
+              Text(desc)
+            ],
+          ),
         ),
       ),
     );

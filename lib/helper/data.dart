@@ -29,7 +29,7 @@ List<CategoryModel> getCategories(){
   category.add(categoryModel);
 
   categoryModel = new CategoryModel();
-  categoryModel.categoryName = "ijk";
+  categoryModel.categoryName = "Technology";
   categoryModel.imageUrl = "https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80";
   category.add(categoryModel);
 
