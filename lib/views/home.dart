@@ -40,12 +40,12 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Flutter",
+              "india",
               style: TextStyle(color: Colors.black),
             ),
             Text(
               "News",
-              style: TextStyle(color: Colors.redAccent),
+              style: TextStyle(color: Colors.redAccent , fontSize: 23),
             )
           ],
         ),
@@ -158,7 +158,12 @@ class BlogTile extends StatelessWidget {
         )));
       },
       child: Container(
-        margin: EdgeInsets.only(top: 10.0),
+        decoration: BoxDecoration(
+          color: Colors.white54,
+          borderRadius: BorderRadius.circular(10.0)
+        ),
+        margin: EdgeInsets.only(top: 20.0),
+        padding: EdgeInsets.only(bottom: 5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10.0),
           child: Column(
